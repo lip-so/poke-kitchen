@@ -375,34 +375,6 @@
               </svg>
             </button>
           </div>
-          <div class="recipes-hub__actions">
-            <button
-              type="button"
-              class="recipes-hub__cook-cta"
-              onclick="goRecipesCook()"
-            >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.4"
-                stroke-linecap="round"
-                aria-hidden="true"
-              >
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-              <span>Cook for yourself</span>
-            </button>
-            <button
-              type="button"
-              class="recipes-hub__community-link"
-              onclick="goRecipesCommunity()"
-            >
-              Use other's recipe
-            </button>
-          </div>
           <div class="recipes-hub__intro">
             <p class="recipes-hub__intro-text">
               A task you teach <span translate="no">Poke</span> once. Runs on its own.
@@ -443,13 +415,41 @@
               >
             </div>
           </div>
+          <div class="recipes-hub__actions">
+            <button
+              type="button"
+              class="recipes-hub__cook-cta"
+              onclick="goRecipesCook()"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              <span>Cook for yourself</span>
+            </button>
+            <button
+              type="button"
+              class="recipes-hub__community-link"
+              onclick="goRecipesCommunity()"
+            >
+              Use other's recipe
+            </button>
+          </div>
           <div class="recipes-hub__drafts recipes-hub__drafts--page-end">
-            <p class="recipes-hub__drafts-label">Your drafts</p>
+            <p class="recipes-hub__drafts-label">My Recipes</p>
             <div class="recipes-hub__drafts-list">
               <button
                 type="button"
                 class="recipes-hub__draft-row"
-                onclick="openDraft('morning-digest')"
+                onclick="viewActiveRecipe('morning-digest')"
               >
                 <svg
                   class="shrink-0"
@@ -457,21 +457,18 @@
                   height="16"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="rgba(100,110,125,0.75)"
+                  stroke="#22c55e"
                   stroke-width="1.8"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   aria-hidden="true"
                 >
-                  <path d="M3 7h9M3 12h7M3 17h5" />
-                  <path
-                    d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
-                    fill="rgba(100,110,125,0.75)"
-                  />
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
                 </svg>
                 <div class="min-w-0 flex-1 text-left">
-                  <div class="recipes-hub__draft-title">Morning digest</div>
-                  <div class="recipes-hub__draft-sub">3 ingredients</div>
+                  <div class="recipes-hub__draft-title">Morning Digest</div>
+                  <div class="recipes-hub__draft-sub">Active • Runs Mon 8am</div>
                 </div>
                 <svg
                   class="shrink-0"
@@ -491,7 +488,7 @@
               <button
                 type="button"
                 class="recipes-hub__draft-row"
-                onclick="openDraft('birthday-texter')"
+                onclick="viewActiveRecipe('workout-tracker')"
               >
                 <svg
                   class="shrink-0"
@@ -499,21 +496,57 @@
                   height="16"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="rgba(100,110,125,0.75)"
+                  stroke="#22c55e"
                   stroke-width="1.8"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   aria-hidden="true"
                 >
-                  <path d="M3 7h9M3 12h7M3 17h5" />
-                  <path
-                    d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
-                    fill="rgba(100,110,125,0.75)"
-                  />
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
                 </svg>
                 <div class="min-w-0 flex-1 text-left">
-                  <div class="recipes-hub__draft-title">Birthday texter</div>
-                  <div class="recipes-hub__draft-sub">edited 2d ago</div>
+                  <div class="recipes-hub__draft-title">Workout Tracker</div>
+                  <div class="recipes-hub__draft-sub">Active • Last ran 2h ago</div>
+                </div>
+                <svg
+                  class="shrink-0"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(60,70,85,0.45)"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="recipes-hub__draft-row"
+                onclick="viewActiveRecipe('expense-logger')"
+              >
+                <svg
+                  class="shrink-0"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#22c55e"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M8 12l2 2 4-4" />
+                </svg>
+                <div class="min-w-0 flex-1 text-left">
+                  <div class="recipes-hub__draft-title">Expense Logger</div>
+                  <div class="recipes-hub__draft-sub">Active • Last ran today</div>
                 </div>
                 <svg
                   class="shrink-0"
@@ -639,20 +672,6 @@
                     Drafts
                   </button>
                 </div>
-                <button type="button" class="recipe-pill-new" data-focus-name onclick="createNewRecipe()">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.4"
-                    stroke-linecap="round"
-                  >
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                  New
-                </button>
               </div>
 
               <div class="recipies-cook-pad">
@@ -705,7 +724,7 @@
                       id="recipeName"
                       name="recipeName"
                       class="recipe-input-name"
-                      placeholder="e.g. Study Buddy"
+                      placeholder="e.g. Morning Digest"
                       autocomplete="off"
                       aria-label="Recipe name"
                     />
@@ -880,6 +899,25 @@
                         </svg>
                       </span>
                     </button>
+                    <button
+                      type="button"
+                      class="integration-tile integration-tile--add"
+                      onclick="addNewIntegration()"
+                      aria-label="Add new integration"
+                      title="Add integration"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                      >
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
 
@@ -1038,26 +1076,6 @@
                 Sports
               </button>
             </div>
-            <div
-              class="recipies-remix-pill"
-            >
-              <svg
-                class="shrink-0"
-                width="13"
-                height="13"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M3 12c3-3 5-3 8 0s5 3 8 0" />
-                <path d="M3 17c3-3 5-3 8 0s5 3 8 0" />
-              </svg>
-              Remix
-            </div>
           </div>
 
           <div class="recipies-community-body">
@@ -1110,22 +1128,9 @@
 
             <div id="remixExpandedContent" class="remix-expanded-content" hidden>
               <div class="remix-section">
-                <label class="remix-section-label">Select a recipe to remix</label>
+                <label class="remix-section-label">Select recipes to remix (multiple allowed)</label>
                 <div class="remix-recipes-list">
-                  <button type="button" class="remix-recipe-option" data-recipe="study-buddy" onclick="selectRemixRecipe(this)">
-                    <div class="flex items-center gap-3 flex-1 min-w-0">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9860e8" stroke-width="1.8">
-                        <path d="M3 7h9M3 12h7M3 17h5" />
-                        <path d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z" fill="#9860e8" />
-                      </svg>
-                      <div class="min-w-0 flex-1 text-left">
-                        <p class="remix-option-title">Study Buddy</p>
-                        <p class="remix-option-sub">Notion + Canvas</p>
-                      </div>
-                    </div>
-                    <span class="remix-check-circle"></span>
-                  </button>
-                  <button type="button" class="remix-recipe-option" data-recipe="morning-digest" onclick="selectRemixRecipe(this)">
+                  <button type="button" class="remix-recipe-option" data-recipe="morning-digest" data-prompt="Text me every Monday at 8am with a summary of my calendar, top emails, and weather forecast" onclick="toggleRemixRecipe(this)">
                     <div class="flex items-center gap-3 flex-1 min-w-0">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(100,110,125,0.7)" stroke-width="1.8">
                         <path d="M3 7h9M3 12h7M3 17h5" />
@@ -1138,7 +1143,7 @@
                     </div>
                     <span class="remix-check-circle"></span>
                   </button>
-                  <button type="button" class="remix-recipe-option" data-recipe="gym-tracker" onclick="selectRemixRecipe(this)">
+                  <button type="button" class="remix-recipe-option" data-recipe="gym-tracker" data-prompt="Track my Strava workouts and send me weekly summaries with progress stats" onclick="toggleRemixRecipe(this)">
                     <div class="flex items-center gap-3 flex-1 min-w-0">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(100,110,125,0.7)" stroke-width="1.8">
                         <path d="M3 7h9M3 12h7M3 17h5" />
@@ -1151,6 +1156,26 @@
                     </div>
                     <span class="remix-check-circle"></span>
                   </button>
+                  <button type="button" class="remix-recipe-option" data-recipe="birthday-texter" data-prompt="Check my contacts for birthdays and send me a reminder 3 days before with gift suggestions" onclick="toggleRemixRecipe(this)">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(100,110,125,0.7)" stroke-width="1.8">
+                        <path d="M3 7h9M3 12h7M3 17h5" />
+                        <path d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z" fill="rgba(100,110,125,0.7)" />
+                      </svg>
+                      <div class="min-w-0 flex-1 text-left">
+                        <p class="remix-option-title">Birthday Texter</p>
+                        <p class="remix-option-sub">Contacts + Messages</p>
+                      </div>
+                    </div>
+                    <span class="remix-check-circle"></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="remix-section" id="selectedRecipesSection" hidden>
+                <label class="remix-section-label">Edit selected recipe prompts</label>
+                <div id="selectedRecipesList" class="remix-selected-recipes">
+                  <!-- Selected recipes with editable prompts will appear here -->
                 </div>
               </div>
 
@@ -1159,6 +1184,14 @@
                 <div class="remix-integrations-grid">
                   <button type="button" class="remix-integration-tile" data-integration="notion" onclick="toggleRemixIntegration(this)">
                     <img src="logos/notion.png" alt="Notion" />
+                    <span class="remix-integration-check">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12l5 5L20 7" />
+                      </svg>
+                    </span>
+                  </button>
+                  <button type="button" class="remix-integration-tile" data-integration="uber" onclick="toggleRemixIntegration(this)">
+                    <img src="logos/uber.webp" alt="Uber" />
                     <span class="remix-integration-check">
                       <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12l5 5L20 7" />
@@ -1181,18 +1214,6 @@
                       </svg>
                     </span>
                   </button>
-                  <button type="button" class="remix-integration-tile remix-tile-placeholder" data-integration="messages" onclick="toggleRemixIntegration(this)">
-                    <div class="remix-placeholder-icon">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                      </svg>
-                    </div>
-                    <span class="remix-integration-check">
-                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12l5 5L20 7" />
-                      </svg>
-                    </span>
-                  </button>
                   <button type="button" class="remix-integration-tile" data-integration="strava" onclick="toggleRemixIntegration(this)">
                     <img src="logos/strava.png" alt="Strava" />
                     <span class="remix-integration-check">
@@ -1201,13 +1222,10 @@
                       </svg>
                     </span>
                   </button>
-                  <button type="button" class="remix-integration-tile" data-integration="uber" onclick="toggleRemixIntegration(this)">
-                    <img src="logos/uber.webp" alt="Uber" />
-                    <span class="remix-integration-check">
-                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12l5 5L20 7" />
-                      </svg>
-                    </span>
+                  <button type="button" class="remix-integration-tile remix-integration-tile--add" onclick="addNewIntegration()" aria-label="Add new integration" title="Add integration">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -1217,50 +1235,6 @@
               </button>
             </div>
           </div>
-
-          <button
-            type="button"
-            class="recipe-list-card"
-            onclick="goRecipesCook()"
-            style="width: 100%; text-align: left; cursor: pointer;"
-          >
-            <div class="flex items-start gap-3">
-              <span class="shrink-0">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#9860e8"
-                  stroke-width="1.8"
-                >
-                  <path d="M3 7h9M3 12h7M3 17h5" />
-                  <path
-                    d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
-                    fill="#9860e8"
-                  />
-                </svg>
-              </span>
-              <div class="min-w-0 flex-1">
-                <p class="recipies-ink" style="font-size: 14px">Study Buddy</p>
-                <p class="recipies-ink-faint" style="margin-top: 4px">
-                  @mira · 2.4k installs · Notion + Canvas
-                </p>
-              </div>
-              <svg
-                class="shrink-0"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="rgba(60,70,85,0.45)"
-                stroke-width="1.8"
-                stroke-linecap="round"
-              >
-                <path d="M9 6l6 6-6 6" />
-              </svg>
-            </div>
-          </button>
 
           <div class="recipies-community-grid">
             <button type="button" class="community-tile" data-category="general" onclick="openRecipeDetail('ramen-radar')">
@@ -1635,6 +1609,10 @@
       }
 
       // Function to create a new recipe (clear form)
+      function addNewIntegration() {
+        alert("Add new integration\n\nThis would open a modal to browse and connect new services like:\n• Google Calendar\n• Spotify\n• Instagram\n• Twitter\n• And more...");
+      }
+
       function createNewRecipe() {
         // Switch to Cooking view
         switchCookView('Cooking');
@@ -1717,13 +1695,75 @@
         }
       }
 
-      function selectRemixRecipe(button) {
-        // Remove selection from all recipe options
-        document.querySelectorAll(".remix-recipe-option").forEach(opt => {
-          opt.classList.remove("selected");
-        });
-        // Select this one
-        button.classList.add("selected");
+      function toggleRemixRecipe(button) {
+        // Toggle selection
+        button.classList.toggle("selected");
+
+        const recipeId = button.getAttribute("data-recipe");
+        const recipeName = button.querySelector(".remix-option-title").textContent;
+        const defaultPrompt = button.getAttribute("data-prompt");
+
+        const selectedSection = document.getElementById("selectedRecipesSection");
+        const selectedList = document.getElementById("selectedRecipesList");
+
+        if (button.classList.contains("selected")) {
+          // Add recipe prompt editor
+          const promptEditor = document.createElement("div");
+          promptEditor.className = "remix-prompt-editor";
+          promptEditor.setAttribute("data-recipe-id", recipeId);
+          promptEditor.innerHTML = `
+            <div class="remix-prompt-header">
+              <span class="remix-prompt-recipe-name">${recipeName}</span>
+              <button type="button" class="remix-prompt-remove" onclick="removeRemixRecipe('${recipeId}')" aria-label="Remove ${recipeName}">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+              </button>
+            </div>
+            <textarea
+              class="remix-prompt-textarea"
+              rows="3"
+              data-recipe="${recipeId}"
+              placeholder="What should this recipe do?"
+            >${defaultPrompt}</textarea>
+          `;
+          selectedList.appendChild(promptEditor);
+          selectedSection.hidden = false;
+        } else {
+          // Remove recipe prompt editor
+          const editor = selectedList.querySelector(`[data-recipe-id="${recipeId}"]`);
+          if (editor) {
+            editor.remove();
+          }
+          // Hide section if no recipes selected
+          if (selectedList.children.length === 0) {
+            selectedSection.hidden = true;
+          }
+        }
+
+        updateRemixButton();
+      }
+
+      function removeRemixRecipe(recipeId) {
+        // Find and deselect the recipe option
+        const recipeOption = document.querySelector(`.remix-recipe-option[data-recipe="${recipeId}"]`);
+        if (recipeOption) {
+          recipeOption.classList.remove("selected");
+        }
+
+        // Remove the prompt editor
+        const selectedList = document.getElementById("selectedRecipesList");
+        const editor = selectedList.querySelector(`[data-recipe-id="${recipeId}"]`);
+        if (editor) {
+          editor.remove();
+        }
+
+        // Hide section if no recipes selected
+        const selectedSection = document.getElementById("selectedRecipesSection");
+        if (selectedList.children.length === 0) {
+          selectedSection.hidden = true;
+        }
+
         updateRemixButton();
       }
 
@@ -1733,11 +1773,11 @@
       }
 
       function updateRemixButton() {
-        const selectedRecipe = document.querySelector(".remix-recipe-option.selected");
+        const selectedRecipes = document.querySelectorAll(".remix-recipe-option.selected");
         const selectedIntegrations = document.querySelectorAll(".remix-integration-tile.selected");
         const createBtn = document.querySelector(".btn-create-remix");
 
-        if (selectedRecipe && selectedIntegrations.length > 0) {
+        if (selectedRecipes.length > 0 && selectedIntegrations.length > 0) {
           createBtn.disabled = false;
         } else {
           createBtn.disabled = true;
@@ -1745,33 +1785,54 @@
       }
 
       function createRemixRecipe() {
-        const selectedRecipe = document.querySelector(".remix-recipe-option.selected");
+        const selectedRecipes = document.querySelectorAll(".remix-recipe-option.selected");
         const selectedIntegrations = Array.from(
           document.querySelectorAll(".remix-integration-tile.selected")
         ).map(tile => tile.getAttribute("data-integration"));
 
-        if (!selectedRecipe || selectedIntegrations.length === 0) {
-          alert("Please select a recipe and at least one integration");
+        if (selectedRecipes.length === 0 || selectedIntegrations.length === 0) {
+          alert("Please select at least one recipe and at least one integration");
           return;
         }
 
-        const recipeName = selectedRecipe.querySelector(".remix-option-title").textContent;
-        const recipeId = selectedRecipe.getAttribute("data-recipe");
+        // Collect all recipe names and prompts
+        const recipes = Array.from(selectedRecipes).map(recipe => {
+          const recipeId = recipe.getAttribute("data-recipe");
+          const recipeName = recipe.querySelector(".remix-option-title").textContent;
+          const promptTextarea = document.querySelector(`.remix-prompt-textarea[data-recipe="${recipeId}"]`);
+          const prompt = promptTextarea ? promptTextarea.value.trim() : "";
+
+          return { id: recipeId, name: recipeName, prompt: prompt };
+        });
 
         console.log("Creating remixed recipe:", {
-          baseRecipe: recipeId,
-          name: recipeName,
+          baseRecipes: recipes,
           integrations: selectedIntegrations
         });
 
         // Navigate to cook view with pre-filled data
         goRecipesCook();
 
-        // Pre-fill the recipe name
+        // Pre-fill the recipe name and combined prompts
         setTimeout(() => {
           const nameInput = document.getElementById("recipeName");
           if (nameInput) {
-            nameInput.value = "Remixed: " + recipeName;
+            // Create a name based on selected recipes
+            if (recipes.length === 1) {
+              nameInput.value = "Remixed: " + recipes[0].name;
+            } else {
+              nameInput.value = "Remixed: " + recipes.map(r => r.name).join(" + ");
+            }
+          }
+
+          // Combine all prompts
+          const promptInput = document.getElementById("recipePrompt");
+          if (promptInput) {
+            const combinedPrompt = recipes
+              .filter(r => r.prompt)
+              .map((r, i) => recipes.length > 1 ? `${i + 1}. ${r.prompt}` : r.prompt)
+              .join("\n\n");
+            promptInput.value = combinedPrompt;
           }
 
           // Pre-select integrations
@@ -1832,6 +1893,18 @@
           integrations: ['notion', 'canvas']
         }
       };
+
+      function viewActiveRecipe(recipeId) {
+        // For now, just show an alert. In a real app, this would navigate to recipe details
+        const recipeNames = {
+          'morning-digest': 'Morning Digest',
+          'workout-tracker': 'Workout Tracker',
+          'expense-logger': 'Expense Logger'
+        };
+
+        const recipeName = recipeNames[recipeId] || recipeId;
+        alert(`Viewing active recipe: ${recipeName}\n\nThis would show recipe details, activity logs, and settings.`);
+      }
 
       function openDraft(draftId) {
         const draft = draftRecipes[draftId];
