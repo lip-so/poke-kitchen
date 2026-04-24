@@ -1,6 +1,7 @@
 # poke-kitchen
 
-A recipe-based automation platform for building and sharing custom workflows.
+A recipe-based automation platform for building and sharing custom workflows for poke.com. 
+Targeted specifically to non-techinical users to substitute for poke kitchen.
 
 ## Getting Started
 
