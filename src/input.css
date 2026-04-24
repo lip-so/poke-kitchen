@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+
+  /* Vercel Guideline: Visible focus rings for accessibility */
+  *:focus-visible {
+    outline: 2px solid rgba(0, 112, 243, 0.6);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Remove default focus outline when using :focus-visible */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-[1.75rem] shadow-2xl;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 8px 32px rgba(31, 38, 135, 0.12),
+      0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+
+  .action-card {
+    @apply rounded-[1.1rem] transition-all duration-200 cursor-pointer;
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .action-card:hover {
+    background: rgba(255, 255, 255, 0.48);
+  }
+
+  .action-card:focus-visible {
+    outline: 2px solid rgba(0, 112, 243, 0.6);
+    outline-offset: 2px;
+  }
+
+  /* Vercel Guideline: Tabular numbers for numerical data */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Subtle interaction animations */
+  .action-card {
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .action-card:active {
+    transform: scale(0.97);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .action-card {
+      transition: none;
+    }
+    .action-card:active {
+      transform: none;
+    }
+  }
+}

@@ -1,0 +1,2085 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Poke</title>
+
+    <base href="/" />
+
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#7ec0ff" media="(prefers-color-scheme: light)" />
+    <meta
+      name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes, interactive-widget=resizes-visual"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="description"
+      content="The proactive AI assistant in your iMessage, WhatsApp, and more. Texts like a human, really knows you, and integrates with your life in dozens of ways."
+    />
+
+    <link rel="manifest" href="/manifest.json" />
+
+    <link rel="icon" type="image/png" href="icons/logo_black/Vector.png" />
+    <link
+      rel="apple-touch-icon"
+      href="icons/logo%20white/1_interaction_icon_white_2026.svg"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="icons/logo%20white/1_interaction_icon_white_2026.svg"
+    />
+
+    <!-- add to homescreen for ios -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Poke" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Vercel Guideline: Preconnect for critical CDN domains -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body,
+      #root {
+        background-color: #000;
+      }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-17520538650"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "AW-17520538650");
+    </script>
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "1179217600855824");
+      fbq("track", "PageView");
+    </script>
+    <!-- End Meta Pixel Code -->
+
+    <link href="./dist/output.css" rel="stylesheet" />
+    <link href="recipies/styles.css?v=20260427" rel="stylesheet" />
+    <link href="recipies/recipes-form.css?v=20260427" rel="stylesheet" />
+    <link href="mobile-adaptive.css?v=20260427" rel="stylesheet" />
+    <style>
+      @import url("https://fonts.cdnfonts.com/css/open-runde");
+      #root,
+      #root * {
+        font-family: "Open Runde", "OpenRunde", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", system-ui, sans-serif;
+      }
+      .font-greeting {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      }
+      #root.page-sky {
+        background: linear-gradient(
+          165deg,
+          #7ec0ff 0%,
+          #9fd4ff 35%,
+          #bfe0ff 70%,
+          #d4eaff 100%
+        );
+        background-color: transparent;
+      }
+      #root.page-sky::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(
+            ellipse 120% 80% at 20% 10%,
+            rgba(255, 255, 255, 0.55) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse 90% 50% at 80% 25%,
+            rgba(255, 255, 255, 0.4) 0%,
+            transparent 45%
+          );
+      }
+      #root.page-sky::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+        mix-blend-mode: overlay;
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+
+  <body class="m-0 text-slate-800 antialiased">
+    <!-- Meta Pixel noscript fallback -->
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1179217600855824&ev=PageView&noscript=1"
+    /></noscript>
+    <div
+      id="root"
+      class="page-sky relative z-[1] min-h-dvh flex items-center justify-center p-4 sm:p-6"
+    >
+      <div
+        id="appAsset"
+        class="app-asset w-full max-w-[504px] min-w-0 transition-[max-width,max-height] duration-200 ease-out relative z-[2]"
+      >
+        <div class="w-full p-5 sm:p-7 glass-card relative overflow-hidden">
+        <div class="flex items-center justify-between gap-2 mb-4 sm:mb-5">
+          <div class="h-9 w-9 flex items-center justify-center flex-shrink-0 text-slate-800">
+            <img
+              src="icons/logo_black/Vector.png"
+              alt="Poke"
+              class="h-7 w-auto"
+              width="32"
+              height="32"
+            />
+          </div>
+          <div
+            class="text-[0.8rem] sm:text-sm text-slate-800/70 font-normal text-center flex-1 tracking-tight"
+          >
+            Fri, Apr 24
+          </div>
+          <div
+            class="h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center flex-shrink-0"
+          >
+            <img
+              src="icons/circle-user-round.svg"
+              alt="Account"
+              class="h-7 w-7 sm:h-8 sm:w-8 opacity-90"
+              width="32"
+              height="32"
+            />
+          </div>
+        </div>
+
+        <div
+          class="relative mb-4 sm:mb-6 h-[10.5rem] sm:h-56 rounded-[1.35rem] overflow-hidden bg-gradient-to-b from-sky-200/50 via-sky-100/35 to-transparent"
+        >
+          <svg
+            class="absolute bottom-0 left-1/2 w-[110%] max-w-none -translate-x-1/2 opacity-30"
+            viewBox="0 0 800 320"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient
+                id="g-sand"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#d4a373" stop-opacity="0.35" />
+                <stop offset="100%" stop-color="#c9b89a" stop-opacity="0.1" />
+              </linearGradient>
+            </defs>
+            <ellipse cx="400" cy="280" rx="340" ry="50" fill="url(#g-sand)" />
+            <ellipse
+              cx="400"
+              cy="220"
+              rx="220"
+              ry="95"
+              fill="#87b8d8"
+              fill-opacity="0.22"
+            />
+            <rect x="360" y="150" width="8" height="100" fill="#7a9b7a" fill-opacity="0.2" />
+            <circle cx="365" cy="128" r="32" fill="#7fb896" fill-opacity="0.18" />
+            <rect x="460" y="120" width="8" height="120" fill="#6d8a6a" fill-opacity="0.2" />
+            <circle cx="465" cy="98" r="40" fill="#7fb896" fill-opacity="0.18" />
+            <rect x="430" y="210" width="28" height="48" fill="#6eb0d0" fill-opacity="0.25" />
+            <path
+              d="M420 210 L480 210 L470 198 L430 198 Z"
+              fill="#5ca8cc"
+              fill-opacity="0.22"
+            />
+          </svg>
+        </div>
+
+        <div class="text-center mb-5 sm:mb-7 -mt-1">
+          <h1
+            class="text-2xl sm:text-[1.7rem] font-medium mb-1.5 tracking-[-0.01em] text-slate-800/95"
+          >
+            Good Afternoon, Sofia
+          </h1>
+          <p class="text-slate-500 text-[0.8rem] sm:text-[0.95rem] font-normal">
+            <span class="tabular-nums">53</span>&nbsp;°F &amp; scattered clouds
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5 sm:gap-3 mb-2.5 sm:mb-3">
+          <button
+            type="button"
+            class="action-card flex flex-col items-center justify-center space-y-2.5 py-5 sm:py-6"
+            aria-label="Automations"
+          >
+            <img
+              src="icons/square-arrow-out-up-right.svg"
+              alt=""
+              class="w-7 h-7 opacity-80 text-slate-600"
+              aria-hidden="true"
+            />
+            <span class="font-normal text-sm text-slate-700/90"
+              >Automations</span
+            >
+          </button>
+          <button
+            type="button"
+            class="action-card flex flex-col items-center justify-center space-y-2.5 py-5 sm:py-6"
+            aria-label="Integrations"
+          >
+            <img
+              src="icons/shopping-bag.svg"
+              alt=""
+              class="w-7 h-7 opacity-80 text-slate-600"
+              aria-hidden="true"
+            />
+            <span class="font-normal text-sm text-slate-700/90"
+              >Integrations</span
+            >
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2.5 sm:gap-3">
+          <button
+            type="button"
+            onclick="openRecipesModal()"
+            class="action-card flex flex-col items-center justify-center space-y-2.5 py-4 sm:py-5"
+          >
+            <img
+              src="icons/blocks.svg"
+              alt=""
+              class="w-7 h-7 opacity-80 text-slate-600"
+            />
+            <span class="font-normal text-sm text-slate-700/90">Recipes</span>
+          </button>
+          <button
+            type="button"
+            class="action-card flex flex-col items-center justify-center space-y-2.5 py-4 sm:py-5"
+            aria-label="Mail"
+          >
+            <img
+              src="icons/mail.svg"
+              alt=""
+              class="w-7 h-7 opacity-80 text-slate-600"
+              aria-hidden="true"
+            />
+            <span class="font-normal text-sm text-slate-700/90">Mail</span>
+          </button>
+          <button
+            type="button"
+            class="action-card flex flex-col items-center justify-center space-y-2.5 py-4 sm:py-5"
+            aria-label="Text Poke"
+          >
+            <img
+              src="icons/message-circle.svg"
+              alt=""
+              class="w-7 h-7 opacity-80 text-slate-600"
+              aria-hidden="true"
+            />
+            <span class="font-normal text-sm text-slate-700/90"
+              >Text <span translate="no">Poke</span></span
+            >
+          </button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div
+      id="recipesModal"
+      class="recipies-overlay hidden fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6"
+    >
+      <div
+        class="recipies-panel recipe-surface recipe-inter flex w-full min-h-0 max-w-[504px] flex-col overflow-hidden"
+        role="dialog"
+        aria-label="Recipes"
+        aria-modal="true"
+      >
+        <div class="recipies-ui min-h-0 flex flex-1 flex-col">
+        <div
+          id="recipesHubView"
+          class="recipes-hub recipes-hub--list-only min-h-0 flex flex-1 flex-col overflow-y-auto"
+        >
+          <div
+            class="recipes-hub__header"
+            style="padding-top: max(0.5rem, env(safe-area-inset-top, 0px))"
+          >
+            <div aria-hidden="true"></div>
+            <h2 id="recipesHubTitle" class="recipies-title">Recipes</h2>
+            <button
+              type="button"
+              class="recipes-hub__close-btn"
+              onclick="closeRecipesModal()"
+              aria-label="Close recipes"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              >
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </button>
+          </div>
+          <div class="recipes-hub__actions">
+            <button
+              type="button"
+              class="recipes-hub__cook-cta"
+              onclick="goRecipesCook()"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              <span>Cook for yourself</span>
+            </button>
+            <button
+              type="button"
+              class="recipes-hub__community-link"
+              onclick="goRecipesCommunity()"
+            >
+              Use other's recipe
+            </button>
+          </div>
+          <div class="recipes-hub__intro">
+            <p class="recipes-hub__intro-text">
+              A task you teach <span translate="no">Poke</span> once. Runs on its own.
+            </p>
+            <div class="recipes-hub__flow" aria-hidden="true">
+              <span class="recipes-hub__flow-pill recipes-hub__flow-pill--light"
+                >your apps</span
+              >
+              <svg
+                class="recipes-hub__flow-arrow"
+                width="12"
+                height="10"
+                viewBox="0 0 12 10"
+                fill="none"
+                stroke="rgba(60,70,85,0.5)"
+                stroke-width="1.3"
+                stroke-linecap="round"
+              >
+                <path d="M1 5h9M7 2l3 3-3 3" />
+              </svg>
+              <span class="recipes-hub__flow-pill recipes-hub__flow-pill--light"
+                >a trigger</span
+              >
+              <svg
+                class="recipes-hub__flow-arrow"
+                width="12"
+                height="10"
+                viewBox="0 0 12 10"
+                fill="none"
+                stroke="rgba(60,70,85,0.5)"
+                stroke-width="1.3"
+                stroke-linecap="round"
+              >
+                <path d="M1 5h9M7 2l3 3-3 3" />
+              </svg>
+              <span class="recipes-hub__flow-pill recipes-hub__flow-pill--dark"
+                >a text</span
+              >
+            </div>
+          </div>
+          <div class="recipes-hub__drafts recipes-hub__drafts--page-end">
+            <p class="recipes-hub__drafts-label">Your drafts</p>
+            <div class="recipes-hub__drafts-list">
+              <button
+                type="button"
+                class="recipes-hub__draft-row"
+                onclick="openDraft('morning-digest')"
+              >
+                <svg
+                  class="shrink-0"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(100,110,125,0.75)"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 7h9M3 12h7M3 17h5" />
+                  <path
+                    d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                    fill="rgba(100,110,125,0.75)"
+                  />
+                </svg>
+                <div class="min-w-0 flex-1 text-left">
+                  <div class="recipes-hub__draft-title">Morning digest</div>
+                  <div class="recipes-hub__draft-sub">3 ingredients</div>
+                </div>
+                <svg
+                  class="shrink-0"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(60,70,85,0.45)"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="recipes-hub__draft-row"
+                onclick="openDraft('birthday-texter')"
+              >
+                <svg
+                  class="shrink-0"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(100,110,125,0.75)"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 7h9M3 12h7M3 17h5" />
+                  <path
+                    d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                    fill="rgba(100,110,125,0.75)"
+                  />
+                </svg>
+                <div class="min-w-0 flex-1 text-left">
+                  <div class="recipes-hub__draft-title">Birthday texter</div>
+                  <div class="recipes-hub__draft-sub">edited 2d ago</div>
+                </div>
+                <svg
+                  class="shrink-0"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(60,70,85,0.45)"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="recipesSubView"
+          class="recipies-sub min-h-0 flex flex-1 flex-col overflow-hidden"
+          hidden
+        >
+          <div
+            class="recipies-sub-header recipies-header"
+            style="padding-top: max(0.5rem, env(safe-area-inset-top, 0px))"
+          >
+            <button
+              type="button"
+              class="recipies-icon-btn"
+              onclick="showRecipesHub()"
+              aria-label="Back to recipes"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M15 6l-6 6 6 6" />
+              </svg>
+            </button>
+            <h2 id="recipeSheetTitle" class="recipies-title">Cook for yourself</h2>
+            <div class="flex justify-end">
+              <button
+                type="button"
+                onclick="closeRecipesModal()"
+                class="recipies-icon-btn"
+                aria-label="Close"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                >
+                  <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div
+            class="recipies-sub-body min-h-0 flex flex-1 flex-col overflow-hidden"
+          >
+            <div
+              id="cookContent"
+              class="recipes-cook-window recipies-cook-scroll min-h-0 flex flex-1 flex-col"
+            >
+              <div
+                class="recipies-filter-bar"
+              >
+                <div class="recipies-filter-bar__segs">
+                  <button
+                    type="button"
+                    class="recipe-seg recipe-seg--on"
+                    data-seg
+                    data-group="cook"
+                  >
+                    <svg
+                      class="recipe-seg-icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M12 3c1 3 4 5 4 9a4 4 0 1 1-8 0c0-2 1-3 2-4 0 2 1 3 2 3-1-3 0-5 0-8z"
+                      />
+                    </svg>
+                    Cooking
+                  </button>
+                  <button
+                    type="button"
+                    class="recipe-seg"
+                    data-seg
+                    data-group="cook"
+                  >
+                    <svg
+                      class="recipe-seg-icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4z" />
+                      <path d="M5 17a3 3 0 0 0 3-3h11" />
+                      <path d="M9 8h7" />
+                    </svg>
+                    Drafts
+                  </button>
+                </div>
+                <button type="button" class="recipe-pill-new" data-focus-name onclick="createNewRecipe()">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                  >
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                  New
+                </button>
+              </div>
+
+              <div class="recipies-cook-pad">
+                <div id="cookComposerView" class="composer-card">
+                  <div class="recipies-composer-head">
+                    <span class="shrink-0" aria-hidden="true">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#9860e8"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M3 7h9M3 12h7M3 17h5" />
+                        <path
+                          d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                          fill="#9860e8"
+                        />
+                      </svg>
+                    </span>
+                    <span class="recipies-composer-title">
+                      Start from scratch
+                    </span>
+                    <span class="shrink-0 opacity-50" aria-hidden="true">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        style="transform: rotate(180deg)"
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
+                  </div>
+
+                  <form class="recipies-composer-body" onsubmit="createRecipe(event); return false;" id="recipeForm">
+                    <div>
+                      <label for="recipeName" class="recipe-cfield__label">Name</label>
+                  <div class="recipe-name-line">
+                    <input
+                      type="text"
+                      id="recipeName"
+                      name="recipeName"
+                      class="recipe-input-name"
+                      placeholder="e.g. Study Buddy"
+                      autocomplete="off"
+                      aria-label="Recipe name"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <div class="recipe-cfield__label">Integrations</div>
+                  <div class="recipies-integration-row" role="group" aria-label="Integrations">
+                    <button
+                      type="button"
+                      class="integration-tile is-selected"
+                      data-integration
+                      data-id="notion"
+                      aria-pressed="true"
+                      title="Notion"
+                    >
+                      <img
+                        src="logos/notion.png"
+                        alt="Notion"
+                        class="w-full h-full object-cover"
+                        width="38"
+                        height="38"
+                      />
+                      <span
+                        class="integration-tile__check"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          width="8"
+                          height="8"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#fff"
+                          stroke-width="4.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12l5 5L20 7" />
+                        </svg>
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      class="integration-tile is-selected"
+                      data-integration
+                      data-id="uber"
+                      aria-pressed="true"
+                      title="Uber"
+                    >
+                      <img
+                        src="logos/uber.webp"
+                        alt="Uber"
+                        class="w-full h-full object-cover"
+                        width="38"
+                        height="38"
+                      />
+                      <span
+                        class="integration-tile__check"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          width="8"
+                          height="8"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#fff"
+                          stroke-width="4.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12l5 5L20 7" />
+                        </svg>
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      class="integration-tile"
+                      data-integration
+                      data-id="canvas"
+                      aria-pressed="false"
+                      title="Canvas"
+                    >
+                      <img
+                        src="logos/canvas.webp"
+                        alt="Canvas"
+                        class="w-full h-full object-cover"
+                        width="38"
+                        height="38"
+                      />
+                      <span
+                        class="integration-tile__check"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          width="8"
+                          height="8"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#fff"
+                          stroke-width="4.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12l5 5L20 7" />
+                        </svg>
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      class="integration-tile"
+                      data-integration
+                      data-id="venmo"
+                      aria-pressed="false"
+                      title="Venmo"
+                    >
+                      <img
+                        src="logos/venmo.png"
+                        alt="Venmo"
+                        class="w-full h-full object-cover"
+                        width="38"
+                        height="38"
+                      />
+                      <span
+                        class="integration-tile__check"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          width="8"
+                          height="8"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#fff"
+                          stroke-width="4.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12l5 5L20 7" />
+                        </svg>
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      class="integration-tile"
+                      data-id="strava"
+                      data-integration
+                      aria-pressed="false"
+                      title="Strava"
+                    >
+                      <img
+                        src="logos/strava.png"
+                        alt="Strava"
+                        class="w-full h-full object-cover"
+                        width="38"
+                        height="38"
+                      />
+                      <span
+                        class="integration-tile__check"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          width="8"
+                          height="8"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#fff"
+                          stroke-width="4.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12l5 5L20 7" />
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="recipePrompt" class="recipe-cfield__label">What should it do?</label>
+                  <textarea
+                    id="recipePrompt"
+                    name="recipePrompt"
+                    class="recipe-textarea-do"
+                    rows="2"
+                    placeholder="Text me every Monday at 8am"
+                    aria-label="Recipe instructions"
+                  ></textarea>
+                  <div class="composer-hint">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path
+                        d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"
+                        fill="#9860e8"
+                      />
+                      <circle cx="19" cy="5" r="1.4" fill="#9860e8" />
+                      <circle
+                        cx="5"
+                        cy="19"
+                        r="1.2"
+                        fill="#9860e8"
+                        opacity="0.7"
+                      />
+                    </svg>
+                    <span class="composer-hint__text"
+                      ><span translate="no">Poke</span> will refine your recipe before delivering</span
+                    >
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn-cook-recipe"
+                  aria-label="Create recipe"
+                >
+                  Cook Recipe
+                </button>
+              </form>
+            </div>
+
+                <!-- Drafts View -->
+                <div id="cookDraftsView" class="cook-drafts-container" hidden>
+                  <div class="cook-drafts-list">
+                    <button type="button" class="cook-draft-card" onclick="openDraft('morning-digest')">
+                      <svg
+                        class="shrink-0"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="rgba(100,110,125,0.75)"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M3 7h9M3 12h7M3 17h5" />
+                        <path
+                          d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                          fill="rgba(100,110,125,0.75)"
+                        />
+                      </svg>
+                      <div class="min-w-0 flex-1 text-left">
+                        <div class="cook-draft-title">Morning digest</div>
+                        <div class="cook-draft-sub">3 ingredients · Last edited today</div>
+                        <div class="cook-draft-preview">Text me every Monday at 8am with a summary...</div>
+                      </div>
+                      <svg
+                        class="shrink-0"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="rgba(60,70,85,0.35)"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      >
+                        <path d="M9 6l6 6-6 6" />
+                      </svg>
+                    </button>
+
+                    <button type="button" class="cook-draft-card" onclick="openDraft('birthday-texter')">
+                      <svg
+                        class="shrink-0"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="rgba(100,110,125,0.75)"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M3 7h9M3 12h7M3 17h5" />
+                        <path
+                          d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                          fill="rgba(100,110,125,0.75)"
+                        />
+                      </svg>
+                      <div class="min-w-0 flex-1 text-left">
+                        <div class="cook-draft-title">Birthday texter</div>
+                        <div class="cook-draft-sub">2 ingredients · Last edited 2d ago</div>
+                        <div class="cook-draft-preview">Check my contacts for birthdays and send me...</div>
+                      </div>
+                      <svg
+                        class="shrink-0"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="rgba(60,70,85,0.35)"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                      >
+                        <path d="M9 6l6 6-6 6" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+          </div>
+        </div>
+
+        <div
+          id="exploreContent"
+          class="recipies-community flex min-h-0 flex-1 flex-col overflow-hidden"
+          hidden
+        >
+          <div class="recipies-community-toolbar">
+            <div class="recipies-community-toolbar__segs">
+              <button
+                type="button"
+                class="recipe-seg recipe-seg--on"
+                data-seg
+                data-group="com"
+              >
+                All
+              </button>
+              <button
+                type="button"
+                class="recipe-seg"
+                data-seg
+                data-group="com"
+              >
+                Productivity
+              </button>
+              <button
+                type="button"
+                class="recipe-seg"
+                data-seg
+                data-group="com"
+              >
+                Sports
+              </button>
+            </div>
+            <div
+              class="recipies-remix-pill"
+            >
+              <svg
+                class="shrink-0"
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 12c3-3 5-3 8 0s5 3 8 0" />
+                <path d="M3 17c3-3 5-3 8 0s5 3 8 0" />
+              </svg>
+              Remix
+            </div>
+          </div>
+
+          <div class="recipies-community-body">
+          <div class="recipies-remix-container">
+            <button
+              type="button"
+              class="recipies-remix-cta"
+              onclick="toggleRemixExpand()"
+              id="remixToggleBtn"
+            >
+              <div
+                class="h-9 w-9 shrink-0 flex items-center justify-center rounded-[10px]"
+                style="background: linear-gradient(135deg, #f3d9c4, #e8b890)"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#7a4a2e"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M3 12c3-3 5-3 8 0s5 3 8 0" />
+                  <path d="M3 17c3-3 5-3 8 0s5 3 8 0" />
+                </svg>
+              </div>
+              <div class="min-w-0 flex-1 text-left">
+                <p class="recipies-ink">Remix a recipe</p>
+                <p class="recipies-ink-muted">
+                  Fork any community recipe · swap integrations
+                </p>
+              </div>
+              <svg
+                id="remixChevron"
+                class="shrink-0 remix-chevron"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(60,70,85,0.45)"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+
+            <div id="remixExpandedContent" class="remix-expanded-content" hidden>
+              <div class="remix-section">
+                <label class="remix-section-label">Select a recipe to remix</label>
+                <div class="remix-recipes-list">
+                  <button type="button" class="remix-recipe-option" data-recipe="study-buddy" onclick="selectRemixRecipe(this)">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9860e8" stroke-width="1.8">
+                        <path d="M3 7h9M3 12h7M3 17h5" />
+                        <path d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z" fill="#9860e8" />
+                      </svg>
+                      <div class="min-w-0 flex-1 text-left">
+                        <p class="remix-option-title">Study Buddy</p>
+                        <p class="remix-option-sub">Notion + Canvas</p>
+                      </div>
+                    </div>
+                    <span class="remix-check-circle"></span>
+                  </button>
+                  <button type="button" class="remix-recipe-option" data-recipe="morning-digest" onclick="selectRemixRecipe(this)">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(100,110,125,0.7)" stroke-width="1.8">
+                        <path d="M3 7h9M3 12h7M3 17h5" />
+                        <path d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z" fill="rgba(100,110,125,0.7)" />
+                      </svg>
+                      <div class="min-w-0 flex-1 text-left">
+                        <p class="remix-option-title">Morning Digest</p>
+                        <p class="remix-option-sub">Gmail + Slack</p>
+                      </div>
+                    </div>
+                    <span class="remix-check-circle"></span>
+                  </button>
+                  <button type="button" class="remix-recipe-option" data-recipe="gym-tracker" onclick="selectRemixRecipe(this)">
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(100,110,125,0.7)" stroke-width="1.8">
+                        <path d="M3 7h9M3 12h7M3 17h5" />
+                        <path d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z" fill="rgba(100,110,125,0.7)" />
+                      </svg>
+                      <div class="min-w-0 flex-1 text-left">
+                        <p class="remix-option-title">Gym Tracker</p>
+                        <p class="remix-option-sub">Strava + Messages</p>
+                      </div>
+                    </div>
+                    <span class="remix-check-circle"></span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="remix-section">
+                <label class="remix-section-label">Swap integrations</label>
+                <div class="remix-integrations-grid">
+                  <button type="button" class="remix-integration-tile" data-integration="notion" onclick="toggleRemixIntegration(this)">
+                    <img src="logos/notion.png" alt="Notion" />
+                    <span class="remix-integration-check">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12l5 5L20 7" />
+                      </svg>
+                    </span>
+                  </button>
+                  <button type="button" class="remix-integration-tile" data-integration="canvas" onclick="toggleRemixIntegration(this)">
+                    <img src="logos/canvas.webp" alt="Canvas" />
+                    <span class="remix-integration-check">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12l5 5L20 7" />
+                      </svg>
+                    </span>
+                  </button>
+                  <button type="button" class="remix-integration-tile" data-integration="venmo" onclick="toggleRemixIntegration(this)">
+                    <img src="logos/venmo.png" alt="Venmo" />
+                    <span class="remix-integration-check">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12l5 5L20 7" />
+                      </svg>
+                    </span>
+                  </button>
+                  <button type="button" class="remix-integration-tile remix-tile-placeholder" data-integration="messages" onclick="toggleRemixIntegration(this)">
+                    <div class="remix-placeholder-icon">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                      </svg>
+                    </div>
+                    <span class="remix-integration-check">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12l5 5L20 7" />
+                      </svg>
+                    </span>
+                  </button>
+                  <button type="button" class="remix-integration-tile" data-integration="strava" onclick="toggleRemixIntegration(this)">
+                    <img src="logos/strava.png" alt="Strava" />
+                    <span class="remix-integration-check">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12l5 5L20 7" />
+                      </svg>
+                    </span>
+                  </button>
+                  <button type="button" class="remix-integration-tile" data-integration="uber" onclick="toggleRemixIntegration(this)">
+                    <img src="logos/uber.webp" alt="Uber" />
+                    <span class="remix-integration-check">
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12l5 5L20 7" />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <button type="button" class="btn-create-remix" onclick="createRemixRecipe()">
+                Create remixed recipe
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="recipe-list-card"
+            onclick="goRecipesCook()"
+            style="width: 100%; text-align: left; cursor: pointer;"
+          >
+            <div class="flex items-start gap-3">
+              <span class="shrink-0">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#9860e8"
+                  stroke-width="1.8"
+                >
+                  <path d="M3 7h9M3 12h7M3 17h5" />
+                  <path
+                    d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                    fill="#9860e8"
+                  />
+                </svg>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="recipies-ink" style="font-size: 14px">Study Buddy</p>
+                <p class="recipies-ink-faint" style="margin-top: 4px">
+                  @mira · 2.4k installs · Notion + Canvas
+                </p>
+              </div>
+              <svg
+                class="shrink-0"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(60,70,85,0.45)"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              >
+                <path d="M9 6l6 6-6 6" />
+              </svg>
+            </div>
+          </button>
+
+          <div class="recipies-community-grid">
+            <button type="button" class="community-tile" data-category="general" onclick="openRecipeDetail('ramen-radar')">
+              <svg
+                class="shrink-0"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(100,110,125,0.7)"
+                stroke-width="1.8"
+              >
+                <path d="M3 7h9M3 12h7M3 17h5" />
+                <path
+                  d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                  fill="rgba(100,110,125,0.7)"
+                />
+              </svg>
+              <div class="min-w-0">
+                <p class="community-tile__name">Ramen Radar</p>
+                <p class="community-tile__byline">@kenji · 1.1k</p>
+              </div>
+              <span style="font-size: 10.5px; color: var(--terra); font-weight: 500; text-decoration: none; margin-top: 4px; align-self: flex-start; letter-spacing: 0.02em;">View →</span>
+            </button>
+            <button type="button" class="community-tile" data-category="sports" onclick="openRecipeDetail('gym-checkin')">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(100,110,125,0.7)"
+                stroke-width="1.8"
+              >
+                <path d="M3 7h9M3 12h7M3 17h5" />
+                <path
+                  d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                  fill="rgba(100,110,125,0.7)"
+                />
+              </svg>
+              <div class="min-w-0">
+                <p class="community-tile__name">Gym Check-in</p>
+                <p class="community-tile__byline">@lex · 812</p>
+              </div>
+              <span style="font-size: 10.5px; color: var(--terra); font-weight: 500; text-decoration: none; margin-top: 4px; align-self: flex-start; letter-spacing: 0.02em;">View →</span>
+            </button>
+            <button type="button" class="community-tile" data-category="general" onclick="openRecipeDetail('plant-watering')">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(100,110,125,0.7)"
+                stroke-width="1.8"
+              >
+                <path d="M3 7h9M3 12h7M3 17h5" />
+                <path
+                  d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                  fill="rgba(100,110,125,0.7)"
+                />
+              </svg>
+              <div class="min-w-0">
+                <p class="community-tile__name">Plant Watering</p>
+                <p class="community-tile__byline">@rosa · 643</p>
+              </div>
+              <span style="font-size: 10.5px; color: var(--terra); font-weight: 500; text-decoration: none; margin-top: 4px; align-self: flex-start; letter-spacing: 0.02em;">View →</span>
+            </button>
+            <button type="button" class="community-tile" data-category="productivity" onclick="openRecipeDetail('daily-standup')">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(100,110,125,0.7)"
+                stroke-width="1.8"
+              >
+                <path d="M3 7h9M3 12h7M3 17h5" />
+                <path
+                  d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                  fill="rgba(100,110,125,0.7)"
+                />
+              </svg>
+              <div class="min-w-0">
+                <p class="community-tile__name">Daily Standup</p>
+                <p class="community-tile__byline">@juno · 418</p>
+              </div>
+              <span style="font-size: 10.5px; color: var(--terra); font-weight: 500; text-decoration: none; margin-top: 4px; align-self: flex-start; letter-spacing: 0.02em;">View →</span>
+            </button>
+            <button type="button" class="community-tile" data-category="productivity" onclick="openRecipeDetail('code-reviewer')">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(100,110,125,0.7)"
+                stroke-width="1.8"
+              >
+                <path d="M3 7h9M3 12h7M3 17h5" />
+                <path
+                  d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                  fill="rgba(100,110,125,0.7)"
+                />
+              </svg>
+              <div class="min-w-0">
+                <p class="community-tile__name">Code Reviewer</p>
+                <p class="community-tile__byline">@dev · 2.2k</p>
+              </div>
+              <span style="font-size: 10.5px; color: var(--terra); font-weight: 500; text-decoration: none; margin-top: 4px; align-self: flex-start; letter-spacing: 0.02em;">View →</span>
+            </button>
+            <button type="button" class="community-tile" data-category="sports" onclick="openRecipeDetail('game-tracker')">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(100,110,125,0.7)"
+                stroke-width="1.8"
+              >
+                <path d="M3 7h9M3 12h7M3 17h5" />
+                <path
+                  d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z"
+                  fill="rgba(100,110,125,0.7)"
+                />
+              </svg>
+              <div class="min-w-0">
+                <p class="community-tile__name">Game Score Tracker</p>
+                <p class="community-tile__byline">@alex · 1.5k</p>
+              </div>
+              <span style="font-size: 10.5px; color: var(--terra); font-weight: 500; text-decoration: none; margin-top: 4px; align-self: flex-start; letter-spacing: 0.02em;">View →</span>
+            </button>
+          </div>
+
+          <button
+            type="button"
+            class="btn-more-community"
+            onclick="window.location.href='https://poke.com/recipes'"
+            style="width: 100%; margin-top: 1rem; padding: 0.875rem 1.25rem; background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.85); border-radius: 14px; font-size: 14px; font-weight: 500; color: rgba(60, 70, 85, 0.85); cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 0.5rem;"
+            onmouseover="this.style.background='rgba(255, 255, 255, 0.75)'; this.style.transform='translateY(-1px)'"
+            onmouseout="this.style.background='rgba(255, 255, 255, 0.65)'; this.style.transform='translateY(0)'"
+            aria-label="View more community recipes"
+          >
+            <span>More community recipes</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </button>
+
+          </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recipe Detail Modal -->
+    <div
+      id="recipeDetailModal"
+      class="recipe-detail-overlay hidden fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-6"
+    >
+      <div class="recipe-detail-panel" role="dialog" aria-label="Recipe Details">
+        <div class="recipe-detail-content">
+          <div class="recipe-detail-header">
+            <button
+              type="button"
+              onclick="closeRecipeDetail()"
+              class="recipe-detail-close"
+              aria-label="Close"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </button>
+          </div>
+
+          <div id="recipeDetailBody" class="recipe-detail-body">
+            <!-- Content will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showRecipesHub() {
+        const hub = document.getElementById("recipesHubView");
+        const sub = document.getElementById("recipesSubView");
+        if (hub) hub.hidden = false;
+        if (sub) {
+          sub.hidden = true;
+          sub.classList.remove("recipies-sub--cook", "recipies-sub--community");
+        }
+      }
+
+      function goRecipesCook() {
+        const hub = document.getElementById("recipesHubView");
+        const sub = document.getElementById("recipesSubView");
+        const title = document.getElementById("recipeSheetTitle");
+        const cookContent = document.getElementById("cookContent");
+        const exploreContent = document.getElementById("exploreContent");
+        if (hub) hub.hidden = true;
+        if (sub) {
+          sub.hidden = false;
+          sub.classList.add("recipies-sub--cook");
+          sub.classList.remove("recipies-sub--community");
+        }
+        if (title) title.textContent = "Cook for yourself";
+        if (cookContent) cookContent.hidden = false;
+        if (exploreContent) exploreContent.hidden = true;
+      }
+
+      function goRecipesCommunity() {
+        const hub = document.getElementById("recipesHubView");
+        const sub = document.getElementById("recipesSubView");
+        const title = document.getElementById("recipeSheetTitle");
+        const cookContent = document.getElementById("cookContent");
+        const exploreContent = document.getElementById("exploreContent");
+        if (hub) hub.hidden = true;
+        if (sub) {
+          sub.hidden = false;
+          sub.classList.add("recipies-sub--community");
+          sub.classList.remove("recipies-sub--cook");
+        }
+        if (title) title.textContent = "Community recipes";
+        if (cookContent) cookContent.hidden = true;
+        if (exploreContent) exploreContent.hidden = false;
+      }
+
+      function openRecipesModal() {
+        document.body.classList.add("recipes-form-open");
+        const m = document.getElementById("recipesModal");
+        m.classList.remove("hidden");
+        m.classList.add("flex");
+        showRecipesHub();
+      }
+
+      function closeRecipesModal() {
+        document.body.classList.remove("recipes-form-open");
+        const m = document.getElementById("recipesModal");
+        m.classList.add("hidden");
+        m.classList.remove("flex");
+        showRecipesHub();
+        const cookContent = document.getElementById("cookContent");
+        const exploreContent = document.getElementById("exploreContent");
+        if (cookContent) cookContent.hidden = false;
+        if (exploreContent) exploreContent.hidden = true;
+        const title = document.getElementById("recipeSheetTitle");
+        if (title) title.textContent = "Cook for yourself";
+      }
+
+      function getSelectedIntegrations() {
+        return Array.from(
+          document.querySelectorAll(
+            "#cookContent [data-integration].is-selected"
+          )
+        ).map((b) => b.getAttribute("data-id"));
+      }
+
+      function createRecipe(e) {
+        const name = document.getElementById("recipeName");
+        const promptEl = document.getElementById("recipePrompt");
+        const recipeName = (name && name.value.trim()) || "";
+        const recipePrompt = (promptEl && promptEl.value.trim()) || "";
+        if (!recipeName && !recipePrompt) {
+          alert("Add a name or describe what the recipe should do");
+          return;
+        }
+        const mockRecipeId = "r" + Math.random().toString(36).slice(2, 11);
+        const button = e && e.currentTarget;
+        if (button) {
+          button.disabled = true;
+          button.innerHTML = "Saving to drafts…";
+        }
+
+        // Save to drafts
+        const newDraft = {
+          id: mockRecipeId,
+          name: recipeName,
+          prompt: recipePrompt,
+          integrations: getSelectedIntegrations(),
+          editedAt: new Date().toISOString()
+        };
+
+        // Store in localStorage
+        let drafts = JSON.parse(localStorage.getItem('pokeDrafts') || '{}');
+        drafts[mockRecipeId] = newDraft;
+        localStorage.setItem('pokeDrafts', JSON.stringify(drafts));
+
+        if (window.console) {
+          console.log("Recipe saved to drafts", newDraft);
+        }
+
+        // Update button text before redirect
+        if (button) {
+          button.innerHTML = "Saved! Redirecting…";
+        }
+
+        setTimeout(() => {
+          window.location.href = "https://poke.com/recipes";
+        }, 1000);
+      }
+
+      document
+        .querySelectorAll("#recipesModal [data-integration]")
+        .forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const on = btn.classList.toggle("is-selected");
+            btn.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+        });
+
+      document
+        .querySelectorAll("#recipesModal [data-seg]")
+        .forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const group = this.getAttribute("data-group");
+            const segmentButtons = document.querySelectorAll(
+              "#recipesModal [data-seg][data-group=\"" + group + "\"]"
+            );
+
+            // Remove active class from all buttons in this group
+            segmentButtons.forEach((b) => {
+              b.classList.remove("recipe-seg--on");
+            });
+
+            // Add active class to clicked button
+            this.classList.add("recipe-seg--on");
+
+            // Handle cook view switching
+            if (group === "cook") {
+              const buttonText = this.textContent.trim();
+              switchCookView(buttonText);
+            }
+
+            // Handle community category filtering
+            if (group === "com") {
+              const label = this.textContent.trim().toLowerCase();
+              document.querySelectorAll(".community-tile").forEach((tile) => {
+                const cat = tile.getAttribute("data-category");
+                if (label === "all" || cat === label) {
+                  tile.style.display = "";
+                } else {
+                  tile.style.display = "none";
+                }
+              });
+            }
+          });
+        });
+
+      function switchCookView(view) {
+        const composerView = document.getElementById("cookComposerView");
+        const draftsView = document.getElementById("cookDraftsView");
+
+        // Hide all views
+        if (composerView) composerView.hidden = true;
+        if (draftsView) draftsView.hidden = true;
+
+        // Show selected view
+        // "Cooking" now shows the composer (for creating new recipes)
+        if (view === "Cooking") {
+          if (composerView) composerView.hidden = false;
+        } else if (view === "Drafts") {
+          if (draftsView) draftsView.hidden = false;
+        }
+      }
+
+      // Function to create a new recipe (clear form)
+      function createNewRecipe() {
+        // Switch to Cooking view
+        switchCookView('Cooking');
+
+        // Set Cooking as active tab
+        document.querySelectorAll('#cookContent [data-seg][data-group="cook"]').forEach(b => {
+          b.classList.remove('recipe-seg--on');
+        });
+        const cookingButton = document.querySelector('#cookContent [data-seg][data-group="cook"]');
+        if (cookingButton) {
+          cookingButton.classList.add('recipe-seg--on');
+        }
+
+        // Clear the form
+        setTimeout(() => {
+          const nameInput = document.getElementById('recipeName');
+          if (nameInput) {
+            nameInput.value = '';
+          }
+
+          const promptInput = document.getElementById('recipePrompt');
+          if (promptInput) {
+            promptInput.value = '';
+          }
+
+          // Clear all integrations
+          document.querySelectorAll('#cookContent [data-integration].is-selected').forEach(tile => {
+            tile.classList.remove('is-selected');
+            tile.setAttribute('aria-pressed', 'false');
+          });
+
+          // Focus on name input
+          if (nameInput) {
+            nameInput.focus();
+          }
+        }, 50);
+      }
+
+      const focusNameBtn = document.querySelector(
+        "#recipesModal [data-focus-name]"
+      );
+      if (focusNameBtn) {
+        focusNameBtn.addEventListener("click", () => {
+          const n = document.getElementById("recipeName");
+          if (n) n.focus();
+        });
+      }
+
+      document
+        .getElementById("recipesModal")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeRecipesModal();
+        });
+      document.addEventListener("keydown", function (e) {
+        if (e.key !== "Escape") return;
+        const m = document.getElementById("recipesModal");
+        if (!m || m.classList.contains("hidden")) return;
+        const sub = document.getElementById("recipesSubView");
+        if (sub && !sub.hidden) {
+          showRecipesHub();
+        } else {
+          closeRecipesModal();
+        }
+      });
+
+      // Remix functionality
+      function toggleRemixExpand() {
+        const content = document.getElementById("remixExpandedContent");
+        const chevron = document.getElementById("remixChevron");
+        const btn = document.getElementById("remixToggleBtn");
+
+        if (content.hidden) {
+          content.hidden = false;
+          chevron.classList.add("expanded");
+          btn.setAttribute("aria-expanded", "true");
+        } else {
+          content.hidden = true;
+          chevron.classList.remove("expanded");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      }
+
+      function selectRemixRecipe(button) {
+        // Remove selection from all recipe options
+        document.querySelectorAll(".remix-recipe-option").forEach(opt => {
+          opt.classList.remove("selected");
+        });
+        // Select this one
+        button.classList.add("selected");
+        updateRemixButton();
+      }
+
+      function toggleRemixIntegration(button) {
+        button.classList.toggle("selected");
+        updateRemixButton();
+      }
+
+      function updateRemixButton() {
+        const selectedRecipe = document.querySelector(".remix-recipe-option.selected");
+        const selectedIntegrations = document.querySelectorAll(".remix-integration-tile.selected");
+        const createBtn = document.querySelector(".btn-create-remix");
+
+        if (selectedRecipe && selectedIntegrations.length > 0) {
+          createBtn.disabled = false;
+        } else {
+          createBtn.disabled = true;
+        }
+      }
+
+      function createRemixRecipe() {
+        const selectedRecipe = document.querySelector(".remix-recipe-option.selected");
+        const selectedIntegrations = Array.from(
+          document.querySelectorAll(".remix-integration-tile.selected")
+        ).map(tile => tile.getAttribute("data-integration"));
+
+        if (!selectedRecipe || selectedIntegrations.length === 0) {
+          alert("Please select a recipe and at least one integration");
+          return;
+        }
+
+        const recipeName = selectedRecipe.querySelector(".remix-option-title").textContent;
+        const recipeId = selectedRecipe.getAttribute("data-recipe");
+
+        console.log("Creating remixed recipe:", {
+          baseRecipe: recipeId,
+          name: recipeName,
+          integrations: selectedIntegrations
+        });
+
+        // Navigate to cook view with pre-filled data
+        goRecipesCook();
+
+        // Pre-fill the recipe name
+        setTimeout(() => {
+          const nameInput = document.getElementById("recipeName");
+          if (nameInput) {
+            nameInput.value = "Remixed: " + recipeName;
+          }
+
+          // Pre-select integrations
+          selectedIntegrations.forEach(integrationId => {
+            const tile = document.querySelector(
+              `#cookContent [data-integration][data-id="${integrationId}"]`
+            );
+            if (tile && !tile.classList.contains("is-selected")) {
+              tile.click();
+            }
+          });
+        }, 100);
+      }
+
+      // Initialize remix button state
+      document.addEventListener("DOMContentLoaded", function() {
+        updateRemixButton();
+
+        // Vercel Guideline: Enter key to submit, Cmd/Ctrl+Enter for textarea
+        const recipeNameInput = document.getElementById('recipeName');
+        const recipePromptInput = document.getElementById('recipePrompt');
+
+        if (recipeNameInput) {
+          recipeNameInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey && !e.metaKey && !e.ctrlKey) {
+              e.preventDefault();
+              const btn = document.querySelector('.btn-cook-recipe');
+              if (btn && !btn.disabled) {
+                btn.click();
+              }
+            }
+          });
+        }
+
+        if (recipePromptInput) {
+          recipePromptInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+              e.preventDefault();
+              const btn = document.querySelector('.btn-cook-recipe');
+              if (btn && !btn.disabled) {
+                btn.click();
+              }
+            }
+          });
+        }
+      });
+
+      // Draft recipes data
+      const draftRecipes = {
+        'morning-digest': {
+          name: 'Morning digest',
+          prompt: 'Text me every Monday at 8am with a summary of my calendar, top emails, and weather forecast',
+          integrations: ['notion', 'uber', 'canvas']
+        },
+        'birthday-texter': {
+          name: 'Birthday texter',
+          prompt: 'Check my contacts for birthdays and send me a reminder 3 days before with gift suggestions',
+          integrations: ['notion', 'canvas']
+        }
+      };
+
+      function openDraft(draftId) {
+        const draft = draftRecipes[draftId];
+        if (!draft) return;
+
+        // Check if we're already in the cook view
+        const cookContent = document.getElementById('cookContent');
+        const isInCookView = cookContent && !cookContent.hidden;
+
+        if (!isInCookView) {
+          // Navigate to cook view first
+          goRecipesCook();
+        }
+
+        // Switch to "Cooking" view to show the composer
+        setTimeout(() => {
+          switchCookView('Cooking');
+
+          // Set "Cooking" button as active
+          const cookingButton = document.querySelector('#cookContent [data-seg][data-group="cook"]');
+          if (cookingButton) {
+            document.querySelectorAll('#cookContent [data-seg][data-group="cook"]').forEach(b => {
+              b.classList.remove('recipe-seg--on');
+            });
+            cookingButton.classList.add('recipe-seg--on');
+          }
+
+          // Pre-fill the form with draft data
+          setTimeout(() => {
+            // Set recipe name
+            const nameInput = document.getElementById('recipeName');
+            if (nameInput) {
+              nameInput.value = draft.name;
+            }
+
+            // Set recipe prompt
+            const promptInput = document.getElementById('recipePrompt');
+            if (promptInput) {
+              promptInput.value = draft.prompt;
+            }
+
+            // Clear existing selections
+            document.querySelectorAll('#cookContent [data-integration].is-selected').forEach(tile => {
+              tile.classList.remove('is-selected');
+              tile.setAttribute('aria-pressed', 'false');
+            });
+
+            // Select the saved integrations
+            draft.integrations.forEach(integrationId => {
+              const tile = document.querySelector(
+                `#cookContent [data-integration][data-id="${integrationId}"]`
+              );
+              if (tile && !tile.classList.contains('is-selected')) {
+                tile.classList.add('is-selected');
+                tile.setAttribute('aria-pressed', 'true');
+              }
+            });
+          }, 50);
+        }, isInCookView ? 0 : 100);
+      }
+
+      // Recipe details data
+      const recipeDetails = {
+        'ramen-radar': {
+          name: 'Ramen Radar',
+          author: '@kenji',
+          installs: '1.1k',
+          description: 'Get notified when your favorite ramen shops have availability. Never miss out on that perfect bowl again.',
+          integrations: ['Yelp', 'Google Maps', 'Messages'],
+          trigger: 'When restaurant availability changes',
+          action: 'Sends you a text with restaurant details and booking link'
+        },
+        'gym-checkin': {
+          name: 'Gym Check-in',
+          author: '@lex',
+          installs: '812',
+          description: 'Automatic check-in reminders and workout tracking. Logs your gym visits and sends weekly summaries.',
+          integrations: ['Strava', 'Google Calendar', 'Messages'],
+          trigger: 'At your scheduled workout time',
+          action: 'Reminds you to check in and tracks your consistency'
+        },
+        'plant-watering': {
+          name: 'Plant Watering',
+          author: '@rosa',
+          installs: '643',
+          description: 'Never forget to water your plants again. Smart reminders based on plant type and weather conditions.',
+          integrations: ['Weather API', 'Calendar', 'Messages'],
+          trigger: 'Based on plant watering schedule and weather',
+          action: 'Sends watering reminders with care tips'
+        },
+        'daily-standup': {
+          name: 'Daily Standup',
+          author: '@juno',
+          installs: '418',
+          description: 'Automate your team standup updates. Pulls from your calendar, tasks, and messages recent accomplishments.',
+          integrations: ['Slack', 'Notion', 'Google Calendar'],
+          trigger: 'Every morning at 9am',
+          action: 'Posts your standup update to Slack'
+        },
+        'code-reviewer': {
+          name: 'Code Reviewer',
+          author: '@dev',
+          installs: '2.2k',
+          description: 'Get instant summaries of pull requests. Reviews code changes and highlights important updates.',
+          integrations: ['GitHub', 'Slack', 'Messages'],
+          trigger: 'When a PR is opened or updated',
+          action: 'Sends code review summary with key changes'
+        },
+        'game-tracker': {
+          name: 'Game Score Tracker',
+          author: '@alex',
+          installs: '1.5k',
+          description: 'Track scores for your favorite sports teams. Get real-time updates and game summaries.',
+          integrations: ['ESPN API', 'Messages', 'Calendar'],
+          trigger: 'During live games',
+          action: 'Sends score updates and game highlights'
+        }
+      };
+
+      function openRecipeDetail(recipeId) {
+        const recipe = recipeDetails[recipeId];
+        if (!recipe) return;
+
+        const modal = document.getElementById('recipeDetailModal');
+        const body = document.getElementById('recipeDetailBody');
+
+        // Build integration logos HTML
+        const integrationLogos = recipe.integrations.map(integration => {
+          const logoMap = {
+            'Notion': 'logos/notion.png',
+            'Canvas': 'logos/canvas.webp',
+            'Strava': 'logos/strava.png',
+            'Uber': 'logos/uber.webp',
+            'Venmo': 'logos/venmo.png'
+          };
+
+          const logoSrc = logoMap[integration];
+          if (logoSrc) {
+            return `<img src="${logoSrc}" alt="${integration}" class="recipe-detail-integration-logo" />`;
+          } else {
+            // Use placeholder for services without logos
+            return `<div class="recipe-detail-integration-placeholder">${integration}</div>`;
+          }
+        }).join('');
+
+        body.innerHTML = `
+          <div class="recipe-detail-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9860e8" stroke-width="1.8">
+              <path d="M3 7h9M3 12h7M3 17h5" />
+              <path d="M17 4l1.2 2.8L21 8l-2.8 1.2L17 12l-1.2-2.8L13 8l2.8-1.2z" fill="#9860e8" />
+            </svg>
+          </div>
+
+          <h3 class="recipe-detail-title">${recipe.name}</h3>
+          <p class="recipe-detail-meta">${recipe.author} · ${recipe.installs} installs</p>
+
+          <p class="recipe-detail-description">${recipe.description}</p>
+
+          <div class="recipe-detail-section">
+            <h4 class="recipe-detail-section-title">Works with</h4>
+            <div class="recipe-detail-integrations">
+              ${integrationLogos}
+            </div>
+          </div>
+
+          <div class="recipe-detail-section">
+            <h4 class="recipe-detail-section-title">How it works</h4>
+            <div class="recipe-detail-flow">
+              <div class="recipe-detail-flow-item">
+                <div class="recipe-detail-flow-icon trigger">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="recipe-detail-flow-label">Trigger</p>
+                  <p class="recipe-detail-flow-text">${recipe.trigger}</p>
+                </div>
+              </div>
+              <div class="recipe-detail-flow-arrow">→</div>
+              <div class="recipe-detail-flow-item">
+                <div class="recipe-detail-flow-icon action">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="recipe-detail-flow-label">Action</p>
+                  <p class="recipe-detail-flow-text">${recipe.action}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-add-to-poke" onclick="addRecipeToPoke('${recipeId}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            Install
+          </button>
+        `;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeRecipeDetail() {
+        const modal = document.getElementById('recipeDetailModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function addRecipeToPoke(recipeId) {
+        const recipe = recipeDetails[recipeId];
+        console.log('Adding recipe to Poke:', recipe);
+
+        // Show success feedback
+        alert(`"${recipe.name}" has been added to your recipes!`);
+
+        // Close modal and go to cook view
+        closeRecipeDetail();
+        goRecipesCook();
+
+        // Pre-fill with recipe name
+        setTimeout(() => {
+          const nameInput = document.getElementById('recipeName');
+          if (nameInput) {
+            nameInput.value = recipe.name;
+          }
+        }, 100);
+      }
+
+      // Close detail modal on escape or backdrop click
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          const modal = document.getElementById('recipeDetailModal');
+          if (modal && !modal.classList.contains('hidden')) {
+            closeRecipeDetail();
+          }
+        }
+      });
+
+      document.getElementById('recipeDetailModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeRecipeDetail();
+        }
+      });
+    </script>
+  </body>
+</html>

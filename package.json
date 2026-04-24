@@ -1,0 +1,12 @@
+{
+  "name": "kitchen-interface",
+  "version": "1.0.0",
+  "description": "Modern interface with Tailwind CSS",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

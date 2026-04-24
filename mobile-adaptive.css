@@ -1,0 +1,337 @@
+/* Mobile-adaptive styles for iPhone compatibility */
+
+/* ===== iOS Safe Area & Viewport Setup ===== */
+:root {
+  /* iOS safe area variables for notch/dynamic island support */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* Prevent overscroll bounce on iOS */
+html {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+  /* Support iOS safe areas */
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+}
+
+/* ===== Touch & Interaction Improvements ===== */
+
+/* Remove tap highlight on iOS */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Improve button touch targets for mobile (min 44x44 per Apple HIG) */
+button,
+.action-card {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/* Better touch scrolling */
+.glass-card,
+#recipesModal .recipes-hub,
+#recipesModal .recipies-cook-pad,
+#recipesModal .recipies-community-body {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* ===== Mobile Layout Adjustments ===== */
+
+/* Small mobile devices (iPhone SE, 12/13 mini) */
+@media (max-width: 390px) {
+  #root {
+    padding: 0.75rem !important;
+  }
+
+  .glass-card {
+    padding: 1rem 1.25rem !important;
+  }
+
+  /* Adjust text sizes for smaller screens */
+  .font-greeting {
+    font-size: 1.5rem !important;
+  }
+
+  /* Tighter grid spacing */
+  .grid {
+    gap: 0.5rem !important;
+  }
+}
+
+/* Standard iPhone sizes (iPhone 12/13/14/15) */
+@media (max-width: 430px) {
+  #appAsset {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure full width on mobile */
+  .w-full.max-w-\[504px\] {
+    max-width: 100% !important;
+  }
+
+  /* Adjust header spacing */
+  .glass-card .flex.items-center.justify-between {
+    margin-bottom: 1rem !important;
+  }
+
+  /* Make action cards more touch-friendly */
+  .action-card {
+    padding: 1.25rem 1rem !important;
+    min-height: 100px;
+  }
+}
+
+/* ===== Landscape Mode ===== */
+@media (max-height: 450px) and (orientation: landscape) {
+  #root {
+    padding: 0.5rem !important;
+  }
+
+  .glass-card {
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Reduce vertical spacing in landscape */
+  .mb-4, .mb-5 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .mb-6, .mb-7 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Compact hero image in landscape */
+  .relative.mb-4.sm\:mb-6 {
+    height: 8rem !important;
+  }
+}
+
+/* ===== Recipes Modal Mobile Optimizations ===== */
+@media (max-width: 430px) {
+  #recipesModal .recipies-panel {
+    max-width: 100% !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Full screen overlay on mobile */
+  .recipies-overlay {
+    padding: 0 !important;
+  }
+
+  /* Add safe area padding to recipe modal header */
+  #recipesModal .recipes-hub__header,
+  #recipesModal .recipies-header {
+    padding-top: max(1.25rem, var(--safe-top)) !important;
+  }
+
+  /* Add safe area padding to bottom content */
+  #recipesModal .recipes-hub__drafts--page-end {
+    padding-bottom: max(1.25rem, var(--safe-bottom)) !important;
+  }
+
+  #recipesModal .recipies-cook-pad,
+  #recipesModal .recipies-community-body {
+    padding-bottom: max(1.5rem, var(--safe-bottom)) !important;
+  }
+}
+
+/* ===== Typography & Readability ===== */
+
+/* Improve text rendering on iOS */
+body,
+#root,
+#root * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Better input fields on iOS */
+input,
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+input[type="text"],
+textarea {
+  font-size: 16px !important; /* Prevents zoom on iOS when focusing inputs */
+}
+
+/* ===== Glass Card Mobile Enhancement ===== */
+@media (max-width: 430px) {
+  .glass-card {
+    /* Adjust backdrop blur for better performance on mobile */
+    backdrop-filter: blur(12px) saturate(130%);
+    -webkit-backdrop-filter: blur(12px) saturate(130%);
+  }
+}
+
+/* ===== Weather & Status Bar ===== */
+@media (max-width: 390px) {
+  /* Compact date/weather display */
+  .text-center.mb-5.sm\:mb-7 {
+    margin-bottom: 1rem !important;
+  }
+
+  .text-slate-500 {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ===== Action Grid Responsive ===== */
+@media (max-width: 375px) {
+  /* Stack 3-column grid on very small screens if needed */
+  .grid.grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .action-card span {
+    font-size: 0.8125rem !important;
+  }
+}
+
+/* ===== PWA & Home Screen Support ===== */
+
+/* Full screen when installed as PWA */
+@media (display-mode: standalone) {
+  body {
+    /* Use full viewport including safe areas */
+    padding-top: var(--safe-top);
+  }
+
+  #root {
+    min-height: 100dvh;
+  }
+}
+
+/* ===== Performance Optimizations ===== */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Dark Mode Support (if user's device is in dark mode) ===== */
+@media (prefers-color-scheme: dark) {
+  /* The design uses light mode, but we can adjust contrast slightly */
+  .glass-card {
+    box-shadow:
+      0 1px 2px rgba(30, 60, 90, 0.06),
+      0 8px 24px rgba(30, 60, 90, 0.08);
+  }
+}
+
+/* ===== Fix iOS Input Zoom ===== */
+@media screen and (max-width: 430px) {
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"] {
+    font-size: 16px !important;
+  }
+}
+
+/* ===== Active/Focus States for Touch ===== */
+.action-card:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+/* Vercel Guideline: Focus-visible for keyboard navigation */
+button:focus-visible,
+.action-card:focus-visible {
+  outline: 2px solid rgba(0, 112, 243, 0.6);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action-card:active {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ===== Notch & Dynamic Island Support ===== */
+@supports (padding: max(0px)) {
+  #root {
+    padding-left: max(1rem, var(--safe-left));
+    padding-right: max(1rem, var(--safe-right));
+  }
+
+  .glass-card {
+    margin-left: max(0px, var(--safe-left));
+    margin-right: max(0px, var(--safe-right));
+  }
+}
+
+/* ===== Horizontal Padding Adjustments ===== */
+@media (max-width: 430px) {
+  #root.page-sky {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* ===== Recipe Form Inputs Mobile Fix ===== */
+@media (max-width: 430px) {
+  .recipe-input-name,
+  .recipe-textarea-do {
+    font-size: 16px !important;
+  }
+}
+
+/* ===== Smooth Scroll ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

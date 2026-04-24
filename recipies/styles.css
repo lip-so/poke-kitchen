@@ -1,0 +1,59 @@
+/* poke-cook — coastal watercolor home screen system */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* coastal palette */
+  --sea-50:  oklch(0.98 0.012 220);
+  --sea-100: oklch(0.955 0.018 220);
+  --sea-200: oklch(0.92 0.028 218);
+  --sea-300: oklch(0.86 0.04 215);
+  --sea-500: oklch(0.72 0.07 220);
+  --sea-700: oklch(0.48 0.08 225);
+  --ink-900: oklch(0.22 0.02 240);
+  --ink-600: oklch(0.45 0.015 240);
+  --ink-400: oklch(0.60 0.012 240);
+  --sand:    oklch(0.94 0.025 85);
+  --sand-d:  oklch(0.86 0.04 75);
+  --terra:   oklch(0.62 0.095 45);
+  --terra-soft: oklch(0.82 0.055 50);
+  --kelp:    oklch(0.55 0.065 155);
+}
+
+.serif   { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+.sans    { font-family: 'Inter', -apple-system, system-ui, sans-serif; }
+
+/* watercolor paper tooth */
+.paper {
+  position: relative;
+}
+.paper::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.35), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.25), transparent 45%);
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* soft card */
+.soft-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 0.5px solid rgba(255,255,255,0.8);
+  box-shadow:
+    0 1px 2px rgba(30, 60, 90, 0.04),
+    0 8px 24px rgba(30, 60, 90, 0.06);
+  border-radius: 20px;
+}
+
+/* grain */
+.grain::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.8  0 0 0 0 0.85  0 0 0 0 0.9  0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.5;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
